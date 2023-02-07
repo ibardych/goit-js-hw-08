@@ -19,7 +19,11 @@ const throttledSaveFormData = _.throttle(saveFormData, 500);
 
 form.addEventListener('input', throttledSaveFormData);
 
-const submitForm = function () {
+const submitForm = function (event) {
+  event.preventDefault();
+  const email = form.elements['email'].value;
+  const message = form.elements['message'].value;
+  console.log(`email: ${email}, message: ${message}`);
   localStorage.setItem('feedback-form-state', '');
   form.reset();
 };
